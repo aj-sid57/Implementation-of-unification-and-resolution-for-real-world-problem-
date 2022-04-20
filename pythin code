@@ -1,0 +1,37 @@
+pip install logical-unification
+
+from unification import * unify(1, 1)
+unify(1, 2) x = var('x')
+unify((1, x), (1, 2))
+unify((x, x), (1, 2)) @unifiable
+class Account(object):
+def   init (self, id, name, balance): self.id = id
+self.name = name self.balance = balance
+
+data = [Account(1, 'Alice', 100), Account(2, 'Bob', 0),
+Account(2, 'Charlie', 0),
+Account(2, 'Denis', 400),
+Account(2, 'Edith', 500)]
+id, name, balance = var('id'), var('name'), var('balance') [unify(Account(id, name, balance), acct) for acct in data]
+[unify(Account(id, name, 0), acct) for acct in data] from unification.match import *
+n = var('n') @match(0) def fib(n):
+return 0
+
+@match(1) def fib(n):
+return 1
+
+@match(n) def fib(n):
+return fib(n - 1) + fib(n - 2)
+ 
+map(fib, [0, 1, 2, 3, 4, 5, 6, 7, 8, 0])
+
+name, amount = var('name'), var('amount')
+
+@match({'status': 200, 'data': {'name': name, 'credit': amount}}) def respond(name, amount):
+balance[name] += amount
+
+@match({'status': 200, 'data': {'name': name, 'debit': amount}}) def respond(name, amount):
+balance[name] -= amount
+
+@match({'status': 404}) def respond():
+print("Bad Request")
